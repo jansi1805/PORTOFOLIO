@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- Animate.css CDN (latest) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.min.css"/>
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #121212;
+      color: #eee;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      /* Animate.css background fadeIn effect */
+      animation: fadeIn 2.5s both;
+    }
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #ff4081;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      animation: fadeInDown 1s ease forwards;
+    }
+    header h1 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #00bcd4;
+    }
+    nav a {
+      margin-left: 20px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      animation: fadeIn 2s ease forwards;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .hero .typed-text {
+      color: #ff4081;
+      font-weight: 600;
+      font-size: 1.5rem;
+      min-height: 40px;
+    }
+
+    /* About Section */
+    #about {
+    background: #222;
+    padding: 60px 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    animation: fadeInUp 1.5s ease forwards;
+    box-shadow: 0 0 10px #00bcd4;
+    position: relative;
+    }
+    #about-content {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    #about-photo {
+      width: 140px;
+      height: 180px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #00bcd4 0%, #ffb6e6 100%);
+      box-shadow: 0 4px 24px #00bcd4;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    #about-text {
+      flex: 1;
+    }
+    /* Experience section styles */
+    #experience {
+  background: #222;
+  padding: 60px 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 10px #00bcd4;
+  animation: animate__fadeInLeft 1.5s both;
+    }
+    #experience h3 {
+      color: #ffd43b;
+      margin-bottom: 20px;
+    }
+    #experience .exp-content {
+      font-size: 1.1rem;
+      color: #eee;
+      line-height: 1.7;
+    }
+    #about h3 {
+      margin-bottom: 20px;
+      color: #00bcd4;
+    }
+    #about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Projects Section */
+        #projects {
+      margin-bottom: 40px;
+    }
+    #projects h3 {
+      margin-bottom: 20px;
+      color: #00bcd4;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+    #projects h3 {
+  color: #ff4081;
+    }
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00bcd4;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+    .project:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #ff4081;
+    }
+    .project h4, .project h3 {
+      color: #ff4081;
+    }
+    .project p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .project a {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #00bcd4;
+    }
+    .project a:hover {
+      color: #ff4081;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: #1e1e1e;
+      padding: 40px 20px;
+      border-radius: 8px;
+      text-align: center;
+      animation: fadeInUp 1.5s ease forwards;
+      font-size: 1.1rem;
+    }
+    #contact h3, #contact h2, #contact p, #contact label, #contact input, #contact textarea, #contact a {
+      font-size: 1.1rem !important;
+    }
+    /* Social media icon size */
+    #contact img[alt$='Logo'] {
+      width: 1.4em !important;
+      height: 1.4em !important;
+      min-width: 1.4em !important;
+      min-height: 1.4em !important;
+      max-width: 1.4em !important;
+      max-height: 1.4em !important;
+    }
+    @media (max-width: 600px) {
+      #contact {
+        padding: 24px 8px;
+        font-size: 1rem;
+      }
+      #contact h3, #contact h2, #contact p, #contact label, #contact input, #contact textarea, #contact a {
+        font-size: 1rem !important;
+      }
+      #contact img[alt$='Logo'] {
+        width: 1.1em !important;
+        height: 1.1em !important;
+      }
+      .contact__container.bd-grid, h2.section-title {
+        max-width: 98vw !important;
+      }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      border-top: 1px solid #333;
+      margin-top: 40px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* New styles for the Skills bar chart */
+    #skills-section h3 {
+      color: #00bcd4;
+      margin-bottom: 20px;
+    }
+    .skills-container {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 8px;
+    }
+    .skill-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .skill-name {
+      color: #fff;
+      font-weight: 600;
+      width: 120px;
+      text-align: right;
+      padding-right: 15px;
+    }
+    .bar-container {
+      flex-grow: 1;
+      height: 25px;
+      background: #333;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00bcd4, #ff4081);
+      transition: width 0.8s ease-in-out;
+    }
+
+    /* New styles for the Contact Form */
+    #contact-section h3 {
+      margin-bottom: 20px;
+      color: #00bcd4;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact__label {
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #eee;
+    }
+    .contact__input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #333;
+      background: #1e1e1e;
+      color: #eee;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+    .contact-button {
+      padding: 12px 25px;
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .contact-button:hover {
+      background: #ff4081;
+    }
+    .button.contact__button {
+      width: 100%;
+      font-size: 2rem;
+      padding: 24px 0;
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #00bcd4;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    .button.contact__button:hover {
+      background: #ff4081;
+      transform: scale(1.05);
+    }
+    .button.contact__button:active {
+      background: #e44d26;
+      transform: scale(0.98);
+    }
+
+    /* Responsive styles for all sections */
+    @media (max-width: 900px) {
+      .container {
+        max-width: 98vw;
+        padding: 10px;
+      }
+      .hero {
+        padding: 60px 10px;
+      }
+      #about-content {
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      #about-photo {
+        margin: 0 auto;
+      }
+      #skills-square-container {
+        width: 98vw !important;
+        min-width: 0;
+        max-width: 100vw;
+      }
+      #skills-square {
+        width: 100% !important;
+        min-width: 0;
+        max-width: 100vw;
+      }
+      .project-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100vw;
+        padding: 4vw;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0;
+      }
+      header h1 {
+        font-size: 1.2rem;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 12px;
+        font-size: 0.95rem;
+      }
+      .hero {
+        padding: 36vw 2vw 10vw 2vw;
+      }
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+      .typed-text {
+        font-size: 1.1rem;
+      }
+      #about-content {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      #about-photo {
+        width: 90vw;
+        height: 38vw;
+        max-width: 220px;
+        max-height: 120px;
+        margin: 0 auto;
+      }
+      #about-text p {
+        font-size: 1rem;
+      }
+      #experience, #about, #projects, #skills, #contact {
+        padding: 24px 4vw;
+        margin-bottom: 24px;
+      }
+      .project-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .project {
+        padding: 12px;
+      }
+      #skills-square-container {
+        width: 98vw !important;
+        min-width: 0;
+        max-width: 100vw;
+        height: 120px !important;
+      }
+      #skills-square {
+        width: 100% !important;
+        min-width: 0;
+        max-width: 100vw;
+        height: 120px !important;
+      }
+      .skill-square-box {
+        font-size: 0.9rem !important;
+        padding: 10px 18px !important;
+      }
+      .contact__container.bd-grid, h2.section-title {
+        max-width: 98vw !important;
+      }
+    }
+
+    /* New styles for the Skills bar chart */
+    #skills-section h3 {
+      color: #00bcd4;
+      margin-bottom: 20px;
+    }
+    .skills-container {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 8px;
+    }
+    .skill-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .skill-name {
+      color: #fff;
+      font-weight: 600;
+      width: 120px;
+      text-align: right;
+      padding-right: 15px;
+    }
+    .bar-container {
+      flex-grow: 1;
+      height: 25px;
+      background: #333;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, #00bcd4, #ff4081);
+      transition: width 0.8s ease-in-out;
+    }
+
+    /* New styles for the Contact Form */
+    #contact-section h3 {
+      margin-bottom: 20px;
+      color: #00bcd4;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact__label {
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #eee;
+    }
+    .contact__input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #333;
+      background: #1e1e1e;
+      color: #eee;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+    .contact-button {
+      padding: 12px 25px;
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .contact-button:hover {
+      background: #ff4081;
+    }
+    .button.contact__button {
+      width: 100%;
+      font-size: 2rem;
+      padding: 24px 0;
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #00bcd4;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    .button.contact__button:hover {
+      background: #ff4081;
+      transform: scale(1.05);
+    }
+    .button.contact__button:active {
+      background: #e44d26;
+      transform: scale(0.98);
+    }
+
+    /* Responsive styles for all sections */
+    @media (max-width: 900px) {
+      .container {
+        max-width: 98vw;
+        padding: 10px;
+      }
+      .hero {
+        padding: 60px 10px;
+      }
+      #about-content {
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      #about-photo {
+        margin: 0 auto;
+      }
+      #skills-square-container {
+        width: 98vw !important;
+        min-width: 0;
+        max-width: 100vw;
+      }
+      #skills-square {
+        width: 100% !important;
+        min-width: 0;
+        max-width: 100vw;
+      }
+      .project-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100vw;
+        padding: 4vw;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0;
+      }
+      header h1 {
+        font-size: 1.2rem;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 12px;
+        font-size: 0.95rem;
+      }
+      .hero {
+        padding: 36vw 2vw 10vw 2vw;
+      }
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+      .typed-text {
+        font-size: 1.1rem;
+      }
+      #about-content {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      #about-photo {
+        width: 90vw;
+        height: 38vw;
+        max-width: 220px;
+        max-height: 120px;
+        margin: 0 auto;
+      }
+      #about-text p {
+        font-size: 1rem;
+      }
+      #experience, #about, #projects, #skills, #contact {
+        padding: 24px 4vw;
+        margin-bottom: 24px;
+      }
+      .project-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .project {
+        padding: 12px;
+      }
+      #skills-square-container {
+        width: 98vw !important;
+        min-width: 0;
+        max-width: 100vw;
+        height: 120px !important;
+      }
+      #skills-square {
+        width: 100% !important;
+        min-width: 0;
+        max-width: 100vw;
+        height: 120px !important;
+      }
+      .skill-square-box {
+        font-size: 0.9rem !important;
+        padding: 10px 18px !important;
+      }
+      .contact__container.bd-grid, h2.section-title {
+        max-width: 98vw !important;
+      }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      border-top: 1px solid #333;
+      margin-top: 40px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="animate__animated animate__fadeIn">
+    <!-- Full-page Particles.js background overlay -->
+    <div id="particles-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;"></div>
+    <!-- Animate.css CDN for background and section animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Animate.css CDN for background and section animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <header class="container animate__animated animate__fadeInDown">
+    <h1 class="animate__animated animate__fadeInDown animate__faster">My professional portfolio</h1>
+    <nav>
+      <a href="#about" class="animate__animated animate__fadeInLeft animate__delay-1s">About</a>
+      <a href="#experience" class="animate__animated animate__fadeInLeft animate__delay-1-5s">Experience</a>
+      <a href="#projects" class="animate__animated animate__fadeInLeft animate__delay-2s">Projects</a>
+      <a href="#skills" class="animate__animated animate__fadeInLeft animate__delay-2-5s">Skills</a>
+      <a href="#contact" class="animate__animated animate__fadeInLeft animate__delay-3s">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero container animate__animated animate__fadeIn animate__delay-1s" style="position: relative; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
+    <div style="position: relative; z-index: 1; text-align: center;">
+      <h1 style="font-size: 3rem; color: #00bcd4; font-weight: 700; margin-bottom: 12px;">K.S. Jansirani</h1>
+  <!-- Removed subtitle as requested -->
+      <div class="typed-text" style="font-size: 1.2rem; color: #ff4081; font-weight: 600; min-height: 40px; margin-bottom: 24px;"></div>
+  <a href="#contact" class="button contact__button" style="width: 180px; font-size: 1.1rem; padding: 12px 0; background: linear-gradient(135deg, #ff4081 0%, #00bcd4 100%); color: #fff; border: none; border-radius: 10px; font-weight: bold; box-shadow: 0 2px 8px #00bcd4; transition: background 0.3s, transform 0.2s; cursor: pointer; margin-top: 14px;">Contact Me</a>
+    </div>
+  </section>
+
+  <section id="about" class="container animate__animated animate__fadeInUp animate__delay-1s" style="display: flex; flex-direction: column; align-items: center;">
+    <h3 style="color: #00bcd4; font-size: 2rem; margin-bottom: 18px;">About Me</h3>
+    <div id="about-content" style="display: flex; flex-direction: row; align-items: center; gap: 40px;">
+      <div id="about-photo" style="width: 160px; height: 200px; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 24px #00bcd4;">
+        <img src="photo.jpg" alt="Jansirani Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;" />
+      </div>
+      <div id="about-text" style="flex: 1;">
+        <p style="font-size: 1.15rem; margin-bottom: 18px;">Hi, I'm <strong>K.S.Jansirani</strong>, a passionate web developer focused on building beautiful, responsive, and interactive websites. I love coding, learning new technologies, and crafting seamless user experiences.</p>
+        <ul style="list-style: none; padding: 0; font-size: 1rem; color: #eee;">
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Services Section -->
+  <section id="services" class="container animate__animated animate__fadeInUp animate__delay-2s" style="margin-bottom: 40px;">
+    <h3 style="color: #ff4081; font-size: 2rem; text-align: center; margin-bottom: 24px;">Services</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;">
+      <div style="background: #222; border-radius: 8px; box-shadow: 0 2px 8px #00bcd4; padding: 24px; min-width: 220px; max-width: 300px; text-align: center;">
+          <img src="webdesign.jpg" alt="Web Design" style="width: 180px; height: 180px; object-fit: cover; margin-bottom: 32px; border-radius: 18px; box-shadow: 0 2px 8px #00bcd4;">
+        <h4 style="color: #00bcd4; margin-bottom: 8px;">Web Design</h4>
+        <p style="color: #eee;">Modern, responsive, and visually appealing websites tailored to your needs.</p>
+      </div>
+      <div style="background: #222; border-radius: 8px; box-shadow: 0 2px 8px #ff4081; padding: 24px; min-width: 220px; max-width: 300px; text-align: center;">
+          <img src="design.jpg" alt="UI/UX" style="width: 180px; height: 180px; object-fit: cover; margin-bottom: 32px; border-radius: 18px; box-shadow: 0 2px 8px #ff4081;"/>
+        <h4 style="color: #ff4081; margin-bottom: 8px;">UI/UX Design</h4>
+        <p style="color: #eee;">Intuitive and user-friendly interfaces for web and mobile applications.</p>
+      </div>
+      <div style="background: #222; border-radius: 8px; box-shadow: 0 2px 8px #ffd43b; padding: 24px; min-width: 220px; max-width: 300px; text-align: center;">
+
+        <img src="testing.jpg" alt="Software testing" style="width: 180px; height: 180px; object-fit: cover; margin-bottom: 32px; border-radius: 18px; box-shadow: 0 2px 8px #ffd43b;">
+        <h4 style="color: #ffd43b; margin-bottom: 8px;">Software testing</h4>
+        <p style="color: #eee;">Ensures your application functions flawlessly, securely, and efficiently to deliver a superior user experience. </p>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- Fun Facts / Stats Section -->
+  <section id="stats" class="container animate__animated animate__fadeInUp animate__delay-2s" style="margin-bottom: 40px;">
+    <h3 style="color: #00bcd4; font-size: 2rem; text-align: center; margin-bottom: 24px;">Fun Facts</h3>
+    <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
+      <div style="background: #222; border-radius: 8px; box-shadow: 0 2px 8px #00bcd4; padding: 24px; min-width: 160px; text-align: center;">
+        <h4 style="color: #ffd43b; font-size: 2rem; margin-bottom: 8px;">2+</h4>
+        <p style="color: #eee;">Years coding knowledge</p>
+      </div>
+      <div style="background: #222; border-radius: 8px; box-shadow: 0 2px 8px #ff4081; padding: 24px; min-width: 160px; text-align: center;">
+        <h4 style="color: #ff4081; font-size: 2rem; margin-bottom: 8px;">3+</h4>
+        <p style="color: #eee;">Projects Completed</p>
+      </div>
+      <div style="background: #222; border-radius: 8px; box-shadow: 0 2px 8px #00bcd4; padding: 24px; min-width: 160px; text-align: center;">
+        <h4 style="color: #00bcd4; font-size: 2rem; margin-bottom: 8px;">100%</h4>
+        <p style="color: #eee;">Dedication</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section (moved to correct place, not inside footer) -->
+  <section id="experience" class="container animate__animated animate__fadeInLeft animate__delay-2s">
+    <h3>Experience</h3>
+    <div class="exp-content">
+      <strong>Fresher</strong><br>
+      I am pre final year of graduation with a strong foundation in web development, specializing in HTML, CSS, JavaScript, and modern frameworks. I have completed several personal and academic projects that demonstrate my ability to build responsive, user-friendly websites. I am eager to join a dynamic team where I can contribute, learn, and grow as a developer. My passion for technology and problem-solving drives me to continuously improve and stay updated with the latest trends in the industry.
+    </div>
+  </section>
+  <section id="projects" class="container animate__animated animate__fadeInUp animate__delay-2s">
+  <h3 class="animate__animated animate__fadeInDown animate__delay-1s">Projects</h3>
+    <div class="project-list">
+      <div class="project">
+        <h4>Portfolio Website</h4>
+        <p>A personal portfolio website built with HTML, CSS, and JavaScript.And it will showcase your work ,skill,and experience</p>
+  <a href="portfolio-project.html" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project">
+  <h4>Todo App</h4>
+  <p>A classic todo list application with local storage support features to add, remove, and mark tasks as complete. A great example of front-end state management.</p>
+  <a href="todo-project.html" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project">
+  <h4>Weather App</h4>
+  <p>Real-time weather app using OpenWeatherMap API.Created with Python (Flask) and integrated with a third-party weather API</p>
+  <a href="weather-project.html" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project">
+          <h3>E-commerce Website</h3>
+          <p>A full-featured e-commerce site with user authentication, product listings, and a secure payment gateway. Built using React, Node.js, and MongoDB.</p>
+          <a href="ecommerce-project.html" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project">
+          <h3>Found Desk Miniproject</h3>
+          <p>A mini-project showcasing an intuitive interface for a lost-and-found system, designed with user experience in mind. Great for small-scale projects.</p>
+          <a href="founddesk-project.html" target="_blank" rel="noopener">View Project</a>
+      </div>
+      <div class="project">
+          <h3>Blog platform</h3>
+          <p>A simple, responsive blog platform for sharing articles and thoughts. Developed using HTML, CSS, and vanilla JavaScript with dynamic content loading.</p>
+          <a href="blog-project.html" target="_blank" rel="noopener">View Project</a>
+      </div>
+  </section>
+        <section id="skills" class="container animate__animated animate__fadeInUp animate__delay-3s" style="margin-bottom: 40px;">
+          <h2 style="text-align: center; color: #00bcd4; font-size: 2rem; margin-bottom: 24px;">My Skills</h2>
+          <div class="skills-container" style="max-width: 600px; margin: 0 auto;">
+            <div class="skill-bar">
+              <span class="skill-name">HTML5</span>
+              <div class="bar-container"><div class="bar" style="width: 95%;"></div></div>
+            </div>
+            <div class="skill-bar">
+              <span class="skill-name">CSS3</span>
+              <div class="bar-container"><div class="bar" style="width: 90%;"></div></div>
+            </div>
+            <div class="skill-bar">
+              <span class="skill-name">JavaScript</span>
+              <div class="bar-container"><div class="bar" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill-bar">
+              <span class="skill-name">React</span>
+              <div class="bar-container"><div class="bar" style="width: 80%;"></div></div>
+            </div>
+            <div class="skill-bar">
+              <span class="skill-name">Node.js</span>
+              <div class="bar-container"><div class="bar" style="width: 75%;"></div></div>
+            </div>
+            <div class="skill-bar">
+              <span class="skill-name">Python</span>
+              <div class="bar-container"><div class="bar" style="width: 70%;"></div></div>
+            </div>
+          </div>
+        </section>
+  <section id="contact" class="container animate__animated animate__fadeInUp animate__delay-4s" style="margin-bottom: 40px;">
+    <h2 style="text-align: center; color: #00bcd4; font-size: 2rem; margin-bottom: 18px;">Contact Me</h2>
+    <div style="max-width: 500px; margin: 0 auto; background: #222; border-radius: 8px; box-shadow: 0 0 10px #00bcd4; padding: 24px;">
+      <form action="https://formspree.io/f/xldrkaay" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
+        <input type="text" name="name" placeholder="Your Name" required style="padding: 12px; border-radius: 6px; border: 1px solid #333; background: #1e1e1e; color: #eee; font-size: 1rem;">
+        <input type="email" name="email" placeholder="Your Email" required style="padding: 12px; border-radius: 6px; border: 1px solid #333; background: #1e1e1e; color: #eee; font-size: 1rem;">
+        <textarea name="message" placeholder="Your Message" required style="padding: 12px; border-radius: 6px; border: 1px solid #333; background: #1e1e1e; color: #eee; font-size: 1rem; min-height: 120px;"></textarea>
+        <button type="submit" class="button contact__button" style="width: 100%; font-size: 1.1rem; padding: 12px 0; background: linear-gradient(135deg, #ff4081 0%, #00bcd4 100%); color: #fff; border: none; border-radius: 10px; font-weight: bold; box-shadow: 0 2px 8px #00bcd4; transition: background 0.3s, transform 0.2s; cursor: pointer; margin-top: 8px;">Send Message</button>
+      </form>
+      <div style="margin-top: 24px; text-align: center;">
+        <p style="font-size: 1rem; color: #eee; margin-bottom: 10px;">Or connect with me:</p>
+        <div style="display: flex; justify-content: center; gap: 18px;">
+          <a href="mailto:jansiks2024@gmail.com" target="_blank" rel="noopener" aria-label="Email">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email Logo" style="width: 38px; height: 38px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px #ff4081; padding: 4px;">
+          </a>
+          <a href="https://www.linkedin.com/in/jansirani-shanmuganathan-642948368" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn Logo" style="width: 38px; height: 38px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px #00bcd4; padding: 4px;">
+          </a>
+          <a href="https://github.com/jansi1805" target="_blank" rel="noopener" aria-label="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub Logo" style="width: 38px; height: 38px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px #fff; padding: 4px;">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+          <button class="scroll-to-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+<script>
+  // Logo click toggles social menu
+  const logoBtn = document.getElementById('logoBtn');
+  const socialMenu = document.getElementById('socialMenu');
+  if (logoBtn && socialMenu) {
+    logoBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      socialMenu.style.display = socialMenu.style.display === 'block' ? 'none' : 'block';
+    });
+    document.addEventListener('click', function(e) {
+      if (socialMenu.style.display === 'block' && !logoBtn.contains(e.target)) {
+        socialMenu.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+  <footer class="animate__animated animate__fadeInUp animate__delay-6s">
+  <script>
+    // GSAP square path animation for skills
+    window.addEventListener('DOMContentLoaded', function() {
+      const square = document.getElementById('skills-square');
+      const boxes = Array.from(square.getElementsByClassName('skill-square-box'));
+      const total = boxes.length;
+      const containerWidth = 420;
+      const containerHeight = 220;
+      const margin = 20;
+      const boxW = 120; // approximate width of box
+      const boxH = 50;  // approximate height of box
+      const pathW = containerWidth - boxW - margin * 2;
+      const pathH = containerHeight - boxH - margin * 2;
+      // Calculate square path points (clockwise: top, right, bottom, left)
+      const points = [
+        { x: margin, y: margin },
+        { x: margin + pathW, y: margin },
+        { x: margin + pathW, y: margin + pathH },
+        { x: margin, y: margin + pathH }
+      ];
+      // Helper to interpolate along square path
+      function getSquarePos(t) {
+        // t: 0 to 1
+        const seg = t * 4;
+        const i = Math.floor(seg) % 4;
+        const frac = seg - i;
+        const p1 = points[i];
+        const p2 = points[(i + 1) % 4];
+        return {
+          x: p1.x + (p2.x - p1.x) * frac,
+          y: p1.y + (p2.y - p1.y) * frac
+        };
+      }
+      function positionBoxes(offset = 0) {
+        boxes.forEach((box, i) => {
+          const t = ((i / total) + offset) % 1;
+          const pos = getSquarePos(t);
+          box.style.left = pos.x + 'px';
+          box.style.top = pos.y + 'px';
+        });
+      }
+      let offset = 0;
+      function animateSquare() {
+        gsap.to({}, {
+          duration: 12,
+          repeat: -1,
+          ease: 'linear',
+          onUpdate: function() {
+            offset += 0.0025;
+            if (offset > 1) offset -= 1;
+            positionBoxes(offset);
+          }
+        });
+      }
+      // Initial position
+      positionBoxes();
+      animateSquare();
+    });
+  </script>
+    &copy; 2025 Jansirani. All rights reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    // Initialize Typed.js
+    const typed = new Typed('.typed-text', {
+      strings: [
+        'Web Developer.',
+        'JavaScript Enthusiast.',
+        'Open Source Contributor.',
+        'Tech Blogger.'
+      ],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 2000,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+    });
+
+    // Initialize Particles.js for full-page network effect
+    window.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-bg', {
+        particles: {
+          number: { value: 70 },
+          color: { value: '#00bcd4' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.45 },
+          size: { value: 3 },
+          line_linked: { enable: true, distance: 120, color: '#ff4081', opacity: 0.4, width: 1.5 },
+          move: { enable: true, speed: 1.5 }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: { enable: true, mode: 'repulse' },
+            onclick: { enable: true, mode: 'push' }
+          },
+          modes: {
+            repulse: { distance: 80 },
+            push: { particles_nb: 4 }
+          }
+        },
+        retina_detect: true
+      });
+    });
+    // Initialize Particles.js background in hero section (keep for extra effect)
+    window.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 60 },
+          color: { value: '#00bcd4' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.5 },
+          size: { value: 4 },
+          line_linked: { enable: true, distance: 120, color: '#ff4081', opacity: 0.4, width: 2 },
+          move: { enable: true, speed: 2 }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: { enable: true, mode: 'repulse' },
+            onclick: { enable: true, mode: 'push' }
+          },
+          modes: {
+            repulse: { distance: 80 },
+            push: { particles_nb: 4 }
+          }
+        },
+        retina_detect: true
+      });
+    });
+  </script>
+</body>
+</html>
